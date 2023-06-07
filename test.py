@@ -8,7 +8,7 @@ def load():
     r = requests.get('https://api.bsmsa.eu/ext/api/bsm/gbfs/v2/en/station_status')
     bicingJson = r.json()
 
-    dic = {'casa': 332,
+    dic = {'car': 332,
     'dalmases': 329,
     'upc_abajo': 422,
     'esade': 302,
@@ -17,10 +17,10 @@ def load():
     'upper': 304}
 
     dic_real = {}
-    b_casa = bicingJson['data']['stations']
+    b_car = bicingJson['data']['stations']
     for key in dic.keys():
-        for i in range(len(b_casa)):
-            if (b_casa[i]['station_id'] == dic[key]):
+        for i in range(len(b_car)):
+            if (b_car[i]['station_id'] == dic[key]):
                 dic_real[key] = i
 
     bicis_sitios = {}
@@ -40,7 +40,7 @@ if st.button('Load data'):
     df = load()
     m = df.iloc[0]['Mecánicas']
     e = df.iloc[0]['Eléctricas']
-    st.markdown(f'##### **Casa** \n + Mecánicas ➡️ {m} \n + Eléctricas ➡️ {e}')
+    st.markdown(f'Mecánicas ➡️ {m} \n + Eléctricas ➡️ {e}')
     st.markdown('\n')
 
     first = -1
